@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// GuestNote model - simple guestbook entry with name and message
+model GuestNote {
+  id        Int      @id @default(autoincrement())
+  name      String
+  message   String
+  createdAt DateTime @default(now())
+}
