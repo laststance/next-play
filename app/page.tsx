@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16"></main>
+    <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between px-16 py-32"></main>
   )
 }
