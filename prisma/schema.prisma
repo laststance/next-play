@@ -13,7 +13,7 @@ datasource db {
 /// GuestNote model - simple guestbook entry with name and message
 model GuestNote {
   id        Int      @id @default(autoincrement())
-  name      String
+  guest     String
   message   String
   createdAt DateTime @default(now())
 }
