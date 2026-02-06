@@ -1,5 +1,9 @@
+import { Guestbook } from '@/components/guestbook'
+
 export default function Home() {
   return (
-    <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between px-16 py-32"></main>
+    <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between px-16 py-32">
+      <Guestbook />
+    </main>
   )
 }
