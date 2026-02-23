@@ -1,6 +1,7 @@
 'use client'
-import { create } from 'node:domain'
-import { useActionState } from 'react'
+
+import { useActionState, useEffect, useRef } from 'react'
+import { toast } from 'sonner'
 import { createGuestNote, type GuestNoteActionState } from '@/actions/guestbook'
 
 export const Guestbook = () => {
@@ -10,6 +11,14 @@ export const Guestbook = () => {
     initialState,
   )
 
+  const formRef = useRef<HTMLFormElement>(null)
+  useEffect(() => {
+    if (state.success) {
+      toast.success('投稿しました！')
+      formRef.current?.reset()
+    }
+  }, [state])
+
   return (
     <section className="border-boder flex w-full flex-1 flex-col items-center rounded-b-lg border">
       <div className="grid w-full place-content-center">
@@ -17,6 +26,7 @@ export const Guestbook = () => {
       </div>
 
       <form
+        ref={formRef}
         action={formAction}
         className="grid w-[80%] grid-cols-[auto_1fr] items-center gap-4 px-8"
       >
