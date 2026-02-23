@@ -1,10 +1,18 @@
 'use client'
 
 import { useActionState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { createGuestNote, type GuestNoteActionState } from '@/actions/guestbook'
 
-export const Guestbook = () => {
+type GuestNote = {
+  id: number
+  guest: string
+  message: string
+  createdAt: Date
+}
+export const Guestbook = ({ initialNotes }: { initialNotes: GuestNote[] }) => {
+  const router = useRouter()
   const initialState: GuestNoteActionState = { success: false, errors: null }
   const [state, formAction, isPending] = useActionState(
     createGuestNote,
@@ -16,6 +24,7 @@ export const Guestbook = () => {
     if (state.success) {
       toast.success('投稿しました！')
       formRef.current?.reset()
+      router.refresh()
     }
   }, [state])
 
@@ -65,6 +74,19 @@ export const Guestbook = () => {
           </button>
         </div>
       </form>
+      <div className="mt-8 w-[80%] space-y-4 px-8 pb-8">
+        {initialNotes.map((note) => (
+          <div key={note.id} className="border-boder rounded-md border p-4">
+            <div className="flex items-center justify-between">
+              <span className="font-semibold">{note.guest}</span>
+              <span className="text-muted-foreground text-sm">
+                {note.createdAt.toLocaleDateString()}
+              </span>
+            </div>
+            <p className="mt-2">{note.message}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
