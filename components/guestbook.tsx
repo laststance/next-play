@@ -26,7 +26,7 @@ export const Guestbook = ({ initialNotes }: { initialNotes: GuestNote[] }) => {
       formRef.current?.reset()
       router.refresh()
     }
-  }, [state])
+  }, [state, router])
 
   return (
     <section className="border-boder flex w-full flex-1 flex-col items-center rounded-b-lg border">
