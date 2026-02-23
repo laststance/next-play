@@ -55,11 +55,11 @@ export const Guestbook = () => {
             </p>
           </>
         )}
-        <div className="justfy-end col-span-2 flex">
+        <div className="col-span-2 flex justify-end">
           <button
             type="submit"
             disabled={isPending}
-            className="bg-primary text-primary-foreground rounded-md px-2 px-4 disabled:opacity-50"
+            className="bg-primary text-primary-foreground rounded-md px-4 disabled:opacity-50"
           >
             {isPending ? 'Submitting...' : 'Submit'}
           </button>
