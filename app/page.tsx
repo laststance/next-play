@@ -4,8 +4,10 @@ import Link from 'next/link'
 export default async function Home() {
   return (
     <Main>
-      <Link href="/guestbook">guestbook</Link>
-      <Link href="/tab">tab</Link>
+      <div className="flex-1">
+        <Link href="/guestbook">guestbook</Link>
+        <Link href="/tab">tab</Link>
+      </div>
     </Main>
   )
 }
