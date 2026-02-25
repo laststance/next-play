@@ -17,7 +17,7 @@ export const TabButtonUnderline = ({
         isActive
           ? 'border-primary text-foreground'
           : 'text-muted-foreground hover:text-foreground hover:border-boder border-transparent',
-        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
+        '',
       )}
       {...rest}
     >
