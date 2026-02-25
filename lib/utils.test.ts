@@ -13,6 +13,7 @@ describe('cn() utility function', () => {
   it('should resolve Tailwind conflicts with twMerge', () => {
     // When two conflicting Tailwind utilities are passed, twMerge keeps the last one
     expect(cn('px-2 px-4')).toBe('px-4')
+    expect(cn('px-10 px-8')).toBe('px-8')
   })
 
   it('should merge complex Tailwind classes correctly', () => {
@@ -25,6 +26,7 @@ describe('cn() utility function', () => {
     expect(result).toContain('py-1')
     expect(result).toContain('rounded')
     expect(result).toContain('bg-white')
+    expect(result).toBe('py-1 rounded px-4 bg-white dark:bg-slate-900')
   })
 
   it('should handle array inputs (from clsx)', () => {
