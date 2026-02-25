@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
+    globalSetup: ['./vitest.global-setup.ts'],
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',

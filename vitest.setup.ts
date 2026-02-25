@@ -1,21 +1,10 @@
-// Vitest Global Setup
-// Runs once before all tests execute
+/**
+ * Vitest Setup Files
+ * Runs before each test file (same process as tests).
+ * Exports are ignored by Vitest — use for side effects only.
+ *
+ * @see https://vitest.dev/config/setupfiles
+ */
 
-// Set up environment
-process.env.NODE_ENV = 'test'
-
-// Global test utilities
-declare global {
-  var testSetupTime: number
-}
-
-// Record setup time for performance monitoring
-globalThis.testSetupTime = Date.now()
-
-console.log('🧪 Vitest Global Setup initialized')
-
-// Teardown hook (optional)
-export function teardown() {
-  const duration = Date.now() - globalThis.testSetupTime
-  console.log(`✅ Tests completed in ${duration}ms`)
-}
+// Set up environment for test execution (cast needed for @types/node readonly)
+;(process.env as Record<string, string>).NODE_ENV = 'test'
