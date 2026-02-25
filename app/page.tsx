@@ -5,6 +5,7 @@ export default async function Home() {
   return (
     <Main>
       <Link href="/guestbook">guestbook</Link>
+      <Link href="/tab">tab</Link>
     </Main>
   )
 }
