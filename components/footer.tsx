@@ -4,9 +4,4 @@ export const Footer = () => {
       laststance.io 2026
     </footer>
   )
-  return (
-    <footer className="grid h-10 w-full max-w-3xl p-8">
-      laststance.io 2026
-    </footer>
-  )
 }
