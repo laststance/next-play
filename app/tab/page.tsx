@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('home')
 
   return (
-    <>
+    <div className="flex-1">
       <div className="flex gap-4">
         <TabButtonUnderline
           isActive={activeTab === 'home'}
@@ -32,6 +32,6 @@ export default function Dashboard() {
           <Posts />
         </Activity>
       </Suspense>
-    </>
+    </div>
   )
 }
