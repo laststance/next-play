@@ -6,7 +6,7 @@ import { Grid } from '@/components/grid'
 export default async function Home() {
   return (
     <Main>
-      <Grid className="grid-cols-3">
+      <Grid className="flex-1 grid-cols-6">
         <Button asChild variant="outline">
           <Link href="/guestbook">guestbook</Link>
         </Button>
