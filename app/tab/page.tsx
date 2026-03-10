@@ -1,7 +1,7 @@
 'use client'
 
 import { Activity, useState, Suspense } from 'react'
-import { TabButtonUnderline } from '@/components/tab-button'
+import { TabButton } from '@/components/tab-button'
 import { Home } from './home'
 import { Posts } from './post'
 export default function Dashboard() {
@@ -10,18 +10,18 @@ export default function Dashboard() {
   return (
     <div className="flex-1">
       <div className="flex gap-4">
-        <TabButtonUnderline
+        <TabButton
           isActive={activeTab === 'home'}
           onClick={() => setActiveTab('home')}
         >
           Home
-        </TabButtonUnderline>
-        <TabButtonUnderline
+        </TabButton>
+        <TabButton
           isActive={activeTab === 'posts'}
           onClick={() => setActiveTab('posts')}
         >
           Posts
-        </TabButtonUnderline>
+        </TabButton>
       </div>
 
       <Suspense fallback={<h1>Loading...</h1>}>
