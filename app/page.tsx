@@ -16,6 +16,9 @@ export default async function Home() {
         <Button asChild variant="outline">
           <Link href="/field-array">field-array</Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href="/action-prop">action-prop</Link>
+        </Button>
       </Grid>
     </Main>
   )

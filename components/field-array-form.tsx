@@ -55,7 +55,7 @@ export const FieldArrayForm = () => {
                   required: '名前は必須です',
                 })}
                 placeholder={`友達 ${index + 1}`}
-                className="w-full rounded-md border border-border px-3 py-2"
+                className="border-border w-full rounded-md border px-3 py-2"
               />
               {errors.friends?.[index]?.name && (
                 <p className="text-destructive text-sm">
