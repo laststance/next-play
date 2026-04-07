@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+
 import { cn } from './utils'
 
 describe('cn() utility function', () => {
@@ -7,7 +8,8 @@ describe('cn() utility function', () => {
   })
 
   it('should handle conditional classes', () => {
-    expect(cn('px-2', false && 'py-1', 'rounded')).toBe('px-2 rounded')
+    const isActive = false
+    expect(cn('px-2', isActive && 'py-1', 'rounded')).toBe('px-2 rounded')
   })
 
   it('should resolve Tailwind conflicts with twMerge', () => {
