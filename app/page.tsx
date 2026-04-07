@@ -20,6 +20,9 @@ export default async function Home() {
         <Button asChild variant="outline">
           <Link href="/action-prop">action-prop</Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href="/react-flow">react-flow</Link>
+        </Button>
       </Grid>
     </Main>
   )

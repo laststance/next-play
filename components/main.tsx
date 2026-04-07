@@ -7,7 +7,7 @@ export const Main = ({ className, children, ...rest }: Props) => {
   return (
     <main
       className={cn(
-        'min-h- flex w-full max-w-3xl flex-1 flex-col items-center justify-between px-16 py-8',
+        'flex min-h-full w-full max-w-3xl flex-1 flex-col items-center justify-between px-16 py-8',
         className,
       )}
       {...rest}

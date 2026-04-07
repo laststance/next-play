@@ -1,5 +1,3 @@
-enableScripts: true
-
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
