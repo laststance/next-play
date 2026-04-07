@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { ThemeToggle } from '@/components/theme-toggle'
+
 export const Header = () => {
   return (
     <header className="bg-header m-4 flex min-h-10 w-full max-w-3xl items-center gap-6 rounded-2xl border p-4">
@@ -11,6 +13,9 @@ export const Header = () => {
           Guestbook
         </Link>
       </nav>
+      <div className="ml-auto">
+        <ThemeToggle />
+      </div>
     </header>
   )
 }

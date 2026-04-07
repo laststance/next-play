@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
 const geistSans = Geist({
@@ -28,16 +29,23 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col items-center bg-zinc-50 font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground flex min-h-screen flex-col items-center font-sans antialiased`}
       >
-        <TooltipProvider>
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
-        </TooltipProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
