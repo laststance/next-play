@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 
+import { toLocalDateString } from '@/lib/date'
 import {
   Tooltip,
   TooltipContent,
@@ -81,7 +82,7 @@ function buildCalendarGrid(data: ActivityDay[]) {
 
   while (current <= today) {
     const day = current.getDay()
-    const dateStr = current.toISOString().split('T')[0]
+    const dateStr = toLocalDateString(current)
     const entry = dataMap.get(dateStr)
 
     cells.push({
@@ -123,7 +124,7 @@ function computeStreaks(data: ActivityDay[]) {
 
   let currentStreak = 0
   const cursor = new Date(today)
-  while (activeDates.has(cursor.toISOString().split('T')[0])) {
+  while (activeDates.has(toLocalDateString(cursor))) {
     currentStreak++
     cursor.setDate(cursor.getDate() - 1)
   }

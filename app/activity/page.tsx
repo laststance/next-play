@@ -2,6 +2,7 @@ import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 
 import { HeatmapCalendar } from '@/components/heatmap-calendar'
+import { toLocalDateString } from '@/lib/date'
 import { Main } from '@/components/main'
 import prisma from '@/lib/prisma'
 
@@ -18,7 +19,7 @@ export default async function Page() {
   })
 
   const data = logs.map((log) => ({
-    date: log.date.toISOString().split('T')[0],
+    date: toLocalDateString(log.date),
     count: log.count,
     note: log.note,
   }))
