@@ -9,11 +9,14 @@ import {
   BackgroundVariant,
   Controls,
   MiniMap,
+  Handle,
+  Position,
   type Connection,
   type Edge,
   type EdgeChange,
   type Node,
   type NodeChange,
+  type NodeProps,
 } from '@xyflow/react'
 import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -24,7 +27,12 @@ import { Main } from '@/components/main'
 
 // Define the two nodes that appear when the page first loads.
 const initialNodes: Node[] = [
-  { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
+  {
+    id: 'n1',
+    position: { x: 0, y: 0 },
+    data: { label: 'Node 1' },
+    type: 'myCustom',
+  },
   { id: 'n2', position: { x: 0, y: 150 }, data: { label: 'Node 2' } },
   { id: 'n3', position: { x: 300, y: 50 }, data: { label: 'Node 3' } },
   { id: 'n4', position: { x: 300, y: 200 }, data: { label: 'Node 4' } },
@@ -83,6 +91,7 @@ export default function Page() {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             fitView
+            nodeTypes={nodeTypes}
             data-test-id="ReactFlow"
           >
             <Background variant={BackgroundVariant.Dots} gap={16} size={1} />
@@ -94,3 +103,24 @@ export default function Page() {
     </Main>
   )
 }
+
+type MyCustomNodeData = { label: string }
+
+type MyCustomNode = Node<MyCustomNodeData, 'myCustom'>
+
+/**
+ * Renders a custom React Flow node with top/bottom handles and a text label.
+ * @param props - React Flow node props including `data.label`.
+ * @returns The custom node UI.
+ */
+function MyNode({ data }: NodeProps<MyCustomNode>) {
+  return (
+    <div className="grid items-center bg-amber-200">
+      <Handle type="target" position={Position.Top} /> ← 入力ポート
+      {data.label} ← 中身は自由 🔥
+      <Handle type="source" position={Position.Bottom} /> ← 出力ポート
+    </div>
+  )
+}
+
+const nodeTypes = { myCustom: MyNode }
