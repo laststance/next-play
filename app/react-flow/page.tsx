@@ -5,6 +5,10 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
+  Background,
+  BackgroundVariant,
+  Controls,
+  MiniMap,
   type Connection,
   type Edge,
   type EdgeChange,
@@ -74,7 +78,11 @@ export default function Page() {
             onConnect={onConnect}
             fitView
             data-test-id="ReactFlow"
-          />
+          >
+            <Background variant={BackgroundVariant.Dots} gap={16} size={1} />
+            <Controls />
+            <MiniMap />
+          </ReactFlow>
         </div>
       </div>
     </Main>
