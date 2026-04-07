@@ -25,11 +25,17 @@ import { Main } from '@/components/main'
 // Define the two nodes that appear when the page first loads.
 const initialNodes: Node[] = [
   { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
-  { id: 'n2', position: { x: 300, y: 150 }, data: { label: 'Node 2' } },
+  { id: 'n2', position: { x: 0, y: 150 }, data: { label: 'Node 2' } },
+  { id: 'n3', position: { x: 300, y: 50 }, data: { label: 'Node 3' } },
+  { id: 'n4', position: { x: 300, y: 200 }, data: { label: 'Node 4' } },
 ]
 
 // Seed the canvas with one edge connecting the initial nodes.
-const initialEdges: Edge[] = [{ id: 'n1-n2', source: 'n1', target: 'n2' }]
+const initialEdges: Edge[] = [
+  { id: 'n1-n2', source: 'n1', target: 'n2', label: 'some text' },
+  { id: 'n1-n3', source: 'n1', target: 'n3', animated: true },
+  { id: 'n1-n4', source: 'n1', target: 'n4', style: { stroke: 'red' } },
+]
 
 /**
  * Render a simple React Flow example with two nodes and one initial connection.
