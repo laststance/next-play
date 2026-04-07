@@ -20,6 +20,10 @@ const THEME_LABEL: Record<Theme, string> = {
   system: 'System',
 }
 
+/**
+ * Renders a theme cycle control (light → dark → system) with matching icon and labels.
+ * Defers theme-specific copy until after mount so SSR markup matches the first client paint.
+ */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -34,12 +38,19 @@ export function ThemeToggle() {
 
   const Icon = current === 'light' ? Sun : current === 'dark' ? Moon : Monitor
 
+  const ariaLabel = mounted
+    ? `Switch to ${THEME_LABEL[next]} theme`
+    : 'Toggle color theme'
+  const buttonTitle = mounted
+    ? `Theme: ${THEME_LABEL[current]} (click for ${THEME_LABEL[next]})`
+    : 'Toggle color theme'
+
   return (
     <Button
       variant="outline"
       size="icon"
-      aria-label={`Switch to ${THEME_LABEL[next]} theme`}
-      title={`Theme: ${THEME_LABEL[current]} (click for ${THEME_LABEL[next]})`}
+      aria-label={ariaLabel}
+      title={buttonTitle}
       onClick={() => setTheme(next)}
     >
       {mounted ? <Icon className="size-4" /> : <Sun className="size-4" />}
