@@ -1,7 +1,9 @@
 'use client'
 
 import { Activity, useState, Suspense } from 'react'
+
 import { TabButton } from '@/components/tab-button'
+
 import { Home } from './home'
 import { Posts } from './post'
 export default function Dashboard() {

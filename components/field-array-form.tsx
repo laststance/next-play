@@ -1,8 +1,9 @@
 'use client'
 
-import { useFieldArray, useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
+import { useFieldArray, useForm } from 'react-hook-form'
+
+import { Button } from '@/components/ui/button'
 
 type Friend = {
   name: string

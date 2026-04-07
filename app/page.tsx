@@ -1,7 +1,8 @@
-import { Main } from '@/components/main'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+
 import { Grid } from '@/components/grid'
+import { Main } from '@/components/main'
+import { Button } from '@/components/ui/button'
 
 export default async function Home() {
   return (

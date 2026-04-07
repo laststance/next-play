@@ -1,7 +1,8 @@
 'use server'
 
-import prisma from '@/lib/prisma'
 import { z } from 'zod'
+
+import prisma from '@/lib/prisma'
 
 const guestNoteSchema = z.object({
   guest: z.string().trim().min(1, 'Name is required'),

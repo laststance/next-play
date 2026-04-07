@@ -1,8 +1,9 @@
-import prisma from '@/lib/prisma'
-import Link from 'next/link'
 import { ArrowLeftIcon } from 'lucide-react'
+import Link from 'next/link'
+
 import { Guestbook } from '@/components/guestbook'
 import { Main } from '@/components/main'
+import prisma from '@/lib/prisma'
 
 export default async function Page() {
   const notes = await prisma.guestNote.findMany({

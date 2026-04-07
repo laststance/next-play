@@ -1,5 +1,5 @@
-import { ActionButton } from '@/components/action-button'
 import { simulateDeleteAction, simulateLikeAction } from '@/actions/demo'
+import { ActionButton } from '@/components/action-button'
 
 export default function ActionPropPage() {
   return (
