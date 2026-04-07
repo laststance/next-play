@@ -25,24 +25,39 @@ import '@xyflow/react/dist/style.css'
 
 import { Main } from '@/components/main'
 
-// Define the two nodes that appear when the page first loads.
 const initialNodes: Node[] = [
   {
-    id: 'n1',
+    id: 'condition',
     position: { x: 0, y: 0 },
-    data: { label: 'Node 1' },
-    type: 'myCustom',
+    data: { label: 'Age >= 18?' },
+    type: 'conditionNode',
   },
-  { id: 'n2', position: { x: 0, y: 150 }, data: { label: 'Node 2' } },
-  { id: 'n3', position: { x: 300, y: 50 }, data: { label: 'Node 3' } },
-  { id: 'n4', position: { x: 300, y: 200 }, data: { label: 'Node 4' } },
+  { id: 'yes-result', position: { x: -150, y: 200 }, data: { label: 'Adult' } },
+  { id: 'no-result', position: { x: 150, y: 200 }, data: { label: 'Minor' } },
+  { id: 'start', position: { x: 0, y: -150 }, data: { label: 'Start' } },
 ]
 
-// Seed the canvas with one edge connecting the initial nodes.
+// Each edge specifies which sourceHandle it leaves from.
+// "yes" and "no" are just string IDs — React Flow does NOT evaluate conditions.
+// YOUR app code would read this data to decide which path to follow.
 const initialEdges: Edge[] = [
-  { id: 'n1-n2', source: 'n1', target: 'n2', label: 'some text' },
-  { id: 'n1-n3', source: 'n1', target: 'n3', animated: true },
-  { id: 'n1-n4', source: 'n1', target: 'n4', style: { stroke: 'red' } },
+  { id: 'e-start', source: 'start', target: 'condition' },
+  {
+    id: 'e-yes',
+    source: 'condition',
+    sourceHandle: 'yes',
+    target: 'yes-result',
+    label: 'Yes',
+    style: { stroke: '#22c55e' },
+  },
+  {
+    id: 'e-no',
+    source: 'condition',
+    sourceHandle: 'no',
+    target: 'no-result',
+    label: 'No',
+    style: { stroke: '#ef4444' },
+  },
 ]
 
 /**
@@ -104,23 +119,36 @@ export default function Page() {
   )
 }
 
-type MyCustomNodeData = { label: string }
-
-type MyCustomNode = Node<MyCustomNodeData, 'myCustom'>
+type ConditionNodeData = { label: string }
+type ConditionNodeType = Node<ConditionNodeData, 'conditionNode'>
 
 /**
- * Renders a custom React Flow node with top/bottom handles and a text label.
- * @param props - React Flow node props including `data.label`.
- * @returns The custom node UI.
+ * A condition node with 1 input (top) and 2 outputs (bottom-left, bottom-right).
+ * The two source handles have distinct IDs so edges can target them individually.
  */
-function MyNode({ data }: NodeProps<MyCustomNode>) {
+function ConditionNode({ data }: NodeProps<ConditionNodeType>) {
   return (
-    <div className="grid items-center bg-amber-200">
-      <Handle type="target" position={Position.Top} /> ← 入力ポート
-      {data.label} ← 中身は自由 🔥
-      <Handle type="source" position={Position.Bottom} /> ← 出力ポート
+    <div className="relative min-w-40 rounded-lg border-2 border-amber-400 bg-amber-100 px-4 py-3 text-center shadow-md">
+      <Handle type="target" position={Position.Top} />
+      <div className="text-sm font-bold">{data.label}</div>
+      <div className="mt-1 flex justify-between text-xs text-gray-500">
+        <span>Yes</span>
+        <span>No</span>
+      </div>
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="yes"
+        style={{ left: '25%' }}
+      />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="no"
+        style={{ left: '75%' }}
+      />
     </div>
   )
 }
 
-const nodeTypes = { myCustom: MyNode }
+const nodeTypes = { conditionNode: ConditionNode }
