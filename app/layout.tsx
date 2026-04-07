@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,10 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col items-center bg-zinc-50 font-sans antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
-        <Toaster />
+        <TooltipProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </TooltipProvider>
       </body>
     </html>
   )

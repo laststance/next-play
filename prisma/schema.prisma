@@ -17,3 +17,12 @@ model GuestNote {
   message   String
   createdAt DateTime @default(now())
 }
+
+/// Daily activity log for the heatmap calendar
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @unique
+  count     Int      @default(1)
+  note      String   @default("")
+  createdAt DateTime @default(now())
+}
