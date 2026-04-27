@@ -2,8 +2,8 @@ import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 
 import { HeatmapCalendar } from '@/components/heatmap-calendar'
-import { toLocalDateString } from '@/lib/date'
 import { Main } from '@/components/main'
+import { toLocalDateString } from '@/lib/date'
 import prisma from '@/lib/prisma'
 
 import { RecordActivityForm } from './record-activity-form'

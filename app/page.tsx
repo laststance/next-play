@@ -29,6 +29,9 @@ export default async function Home() {
         <Button asChild variant="outline">
           <Link href="/activity">activity</Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href="/dndkit">DnDKit</Link>
+        </Button>
       </Grid>
     </Main>
   )
