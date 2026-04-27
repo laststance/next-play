@@ -30,7 +30,7 @@ export default async function Home() {
           <Link href="/activity">activity</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/dndkit">DnDKit</Link>
+          <Link href="/dndkit/basic">DnDKit / Basic</Link>
         </Button>
       </Grid>
     </Main>
