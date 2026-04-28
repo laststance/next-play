@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 
-import { toLocalDateString } from '@/lib/date'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { toLocalDateString } from '@/lib/date'
 
 export type ActivityDay = {
   date: string

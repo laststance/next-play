@@ -131,19 +131,21 @@ function FlowCanvas() {
         <div className="flex gap-1">
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100"
-            onClick={() => reactFlow.zoomIn({ duration: 300 })}
+            onClick={async () => reactFlow.zoomIn({ duration: 300 })}
           >
             Zoom In
           </button>
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100"
-            onClick={() => reactFlow.zoomOut({ duration: 300 })}
+            onClick={async () => reactFlow.zoomOut({ duration: 300 })}
           >
             Zoom Out
           </button>
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100"
-            onClick={() => reactFlow.fitView({ padding: 0.2, duration: 300 })}
+            onClick={async () =>
+              reactFlow.fitView({ padding: 0.2, duration: 300 })
+            }
           >
             Fit View
           </button>
