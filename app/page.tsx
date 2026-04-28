@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 export default async function Home() {
   return (
     <Main>
-      <Grid className="flex-1 grid-cols-6 gap-2">
+      <Grid className="flex-1 grid-cols-6 content-start gap-2">
         <Button asChild variant="outline">
           <Link href="/guestbook">guestbook</Link>
         </Button>
@@ -30,7 +30,7 @@ export default async function Home() {
           <Link href="/activity">activity</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/dndkit/basic">DnDKit / Basic</Link>
+          <Link href="/dndkit/basic">dndkit Basic</Link>
         </Button>
       </Grid>
     </Main>
