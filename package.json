@@ -9,7 +9,7 @@
     "start": "next start -p 3458",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "test": "vitest",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "validate": "run-p lint test build",
     "test:ui": "vitest --ui",
