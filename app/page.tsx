@@ -38,6 +38,9 @@ export default async function Home() {
         <Button asChild variant="outline">
           <Link href="/dndkit/kanban">dndkit Kanban</Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href="/dndkit/persisted">dndkit Persisted</Link>
+        </Button>
       </Grid>
     </Main>
   )

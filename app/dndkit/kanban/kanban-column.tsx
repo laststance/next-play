@@ -1,4 +1,4 @@
-import { useDroppable } from '@dnd-kit/react'
+import { DroppablePanel } from '@/components/dnd-kit'
 
 import type { KanbanCard, KanbanColumn } from './constants'
 import { KANBAN_CARD_TYPE, KANBAN_COLUMN_COLLISION_PRIORITY } from './constants'
@@ -18,17 +18,13 @@ type KanbanColumnPanelProps = {
  * <KanbanColumnPanel column={column} cards={cards} />
  */
 export function KanbanColumnPanel({ cards, column }: KanbanColumnPanelProps) {
-  const { ref } = useDroppable({
-    accept: KANBAN_CARD_TYPE,
-    collisionPriority: KANBAN_COLUMN_COLLISION_PRIORITY,
-    id: column.id,
-    type: 'column',
-  })
-
   return (
-    <section
-      ref={ref}
+    <DroppablePanel
+      accept={KANBAN_CARD_TYPE}
       className="bg-card flex min-h-96 flex-col rounded-2xl border p-4 transition"
+      collisionPriority={KANBAN_COLUMN_COLLISION_PRIORITY}
+      droppableId={column.id}
+      type="column"
     >
       <div className="mb-4">
         <div className="flex items-center justify-between gap-3">
@@ -59,6 +55,6 @@ export function KanbanColumnPanel({ cards, column }: KanbanColumnPanelProps) {
           targets.
         </div>
       )}
-    </section>
+    </DroppablePanel>
   )
 }

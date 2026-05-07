@@ -5,6 +5,7 @@ import { isSortable } from '@dnd-kit/react/sortable'
 import { useRef, useState } from 'react'
 
 import { scheduleAfterDragCleanup } from '@/app/dndkit/functions'
+import { LessonPanel } from '@/components/dnd-kit'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
@@ -150,21 +151,17 @@ export default function Page() {
         </section>
       </DragDropProvider>
 
-      <section className="bg-muted/40 rounded-2xl border p-5">
-        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="font-semibold">What to watch</h2>
-          <p className="text-muted-foreground text-sm">{lastMoveLabel}</p>
-        </div>
-        <ol className="text-muted-foreground list-inside list-decimal space-y-2 text-sm">
-          <li>`group` is the card's current column.</li>
-          <li>`initialGroup` is the column where dragging started.</li>
-          <li>Same-column moves reorder one array.</li>
-          <li>
-            Cross-column moves remove from one array and insert into another.
-          </li>
-          <li>Column-level `useDroppable` lets empty columns receive cards.</li>
-        </ol>
-      </section>
+      <LessonPanel
+        items={[
+          "`group` is the card's current column.",
+          '`initialGroup` is the column where dragging started.',
+          'Same-column moves reorder one array.',
+          'Cross-column moves remove from one array and insert into another.',
+          'Column-level `useDroppable` lets empty columns receive cards.',
+        ]}
+        title="What to watch"
+        trailing={lastMoveLabel}
+      />
     </Main>
   )
 }
