@@ -13,10 +13,10 @@ export function reorderSortableItems(
   items: SortableItem[],
   initialIndex: number,
   targetIndex: number,
-) {
+): SortableItem[] {
   const nextItems = [...items]
   const [movedItem] = nextItems.splice(initialIndex, 1)
-  console.log('reorderSortableItems: ', items, initialIndex, movedItem)
+
   if (movedItem === undefined) {
     return items
   }

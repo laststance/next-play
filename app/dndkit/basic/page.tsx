@@ -4,6 +4,7 @@ import { DragDropProvider } from '@dnd-kit/react'
 import { useState } from 'react'
 
 import { DraggableCard } from '@/app/dndkit/basic/draggable-card'
+import { scheduleAfterDragCleanup } from '@/app/dndkit/functions'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
@@ -52,13 +53,15 @@ export default function Page() {
 
       <DragDropProvider
         onDragEnd={(event) => {
-          console.log('onDragEnd')
           if (event.canceled) {
             return
           }
-          console.log(event)
+
           const didDropOnTarget = event.operation.target?.id === DROP_ZONE_ID
-          setCardLocation(didDropOnTarget ? DROP_ZONE_ID : START_AREA_ID)
+
+          scheduleAfterDragCleanup(() => {
+            setCardLocation(didDropOnTarget ? DROP_ZONE_ID : START_AREA_ID)
+          })
         }}
       >
         <div className="grid gap-4 md:grid-cols-2">
@@ -88,7 +91,7 @@ export default function Page() {
         <h2 className="mb-3 font-semibold">What to watch</h2>
         <ol className="text-muted-foreground list-inside list-decimal space-y-2 text-sm">
           <li>`useDraggable` attaches drag behavior to the card.</li>
-          <li>`useDroppable` marks the target and exposes hover state.</li>
+          <li>`useDroppable` registers the target zone.</li>
           <li>`DragDropProvider` receives the final drag operation.</li>
           <li>React state decides where the card renders after drop.</li>
         </ol>

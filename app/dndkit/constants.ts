@@ -1,0 +1,1 @@
+export const DNDKIT_DRAG_CLEANUP_DELAY_MS = 0

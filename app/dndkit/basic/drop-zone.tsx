@@ -14,12 +14,12 @@ type DropZoneProps = {
  * Renders the target area that can receive the draggable card.
  * @param children - Content shown inside the drop zone.
  * @param isCardInside - Whether the card currently lives in this zone.
- * @returns A droppable panel that highlights while it is the active target.
+ * @returns A droppable panel that reflects the settled card location.
  * @example
  * <DropZone isCardInside={false}>Drop here</DropZone>
  */
 export function DropZone({ children, isCardInside }: DropZoneProps) {
-  const { isDropTarget, ref } = useDroppable({
+  const { ref } = useDroppable({
     id: DROP_ZONE_ID,
   })
 
@@ -28,14 +28,13 @@ export function DropZone({ children, isCardInside }: DropZoneProps) {
       ref={ref}
       className={cn(
         'border-muted-foreground/30 bg-muted/30 flex min-h-52 flex-col justify-center rounded-2xl border-2 border-dashed p-5 transition',
-        isDropTarget && 'border-primary bg-primary/10',
         isCardInside && 'border-primary/60 bg-primary/5',
       )}
     >
       <div className="mb-4">
         <h2 className="font-semibold">Droppable zone</h2>
         <p className="text-muted-foreground text-sm">
-          `useDroppable` exposes `isDropTarget` for hover feedback.
+          `useDroppable` registers this panel as the drop target.
         </p>
       </div>
       {children ?? (

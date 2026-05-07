@@ -4,6 +4,7 @@ import { DragDropProvider } from '@dnd-kit/react'
 import { isSortable } from '@dnd-kit/react/sortable'
 import { useState } from 'react'
 
+import { scheduleAfterDragCleanup } from '@/app/dndkit/functions'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
@@ -54,28 +55,41 @@ export default function Page() {
       <DragDropProvider
         onDragEnd={(event) => {
           if (event.canceled) {
-            setLastMoveLabel('Drag canceled, order unchanged')
+            scheduleAfterDragCleanup(() => {
+              setLastMoveLabel('Drag canceled, order unchanged')
+            })
             return
           }
 
-          const { source } = event.operation
+          const { source, target } = event.operation
 
-          if (!isSortable(source)) {
-            setLastMoveLabel('Source was not sortable, order unchanged')
+          if (!isSortable(source) || target === null || target === undefined) {
+            scheduleAfterDragCleanup(() => {
+              setLastMoveLabel(
+                'Missing sortable source or target, order unchanged',
+              )
+            })
             return
           }
 
-          const { index, initialIndex } = source
+          const { initialIndex } = source
+          const targetIndex = isSortable(target) ? target.index : source.index
 
-          if (initialIndex === index) {
-            setLastMoveLabel('Dropped in the same position')
+          if (initialIndex === targetIndex) {
+            scheduleAfterDragCleanup(() => {
+              setLastMoveLabel('Dropped in the same position')
+            })
             return
           }
 
-          setItems((currentItems) =>
-            reorderSortableItems(currentItems, initialIndex, index),
-          )
-          setLastMoveLabel(`Moved item from ${initialIndex} to ${index}`)
+          scheduleAfterDragCleanup(() => {
+            setItems((currentItems) =>
+              reorderSortableItems(currentItems, initialIndex, targetIndex),
+            )
+            setLastMoveLabel(
+              `Moved item from ${initialIndex} to ${targetIndex}`,
+            )
+          })
         }}
       >
         <section className="bg-card rounded-2xl border p-5">

@@ -1,6 +1,5 @@
+import { OptimisticSortingPlugin } from '@dnd-kit/dom/sortable'
 import { useSortable } from '@dnd-kit/react/sortable'
-
-import { cn } from '@/lib/utils'
 
 import type { SortableItem } from './constants'
 import { SORTABLE_INDEX_DISPLAY_OFFSET } from './constants'
@@ -19,18 +18,20 @@ type SortableListItemProps = {
  * <SortableListItem index={0} item={item} />
  */
 export function SortableListItem({ index, item }: SortableListItemProps) {
-  const { isDragging, ref } = useSortable({
+  const { ref } = useSortable({
     id: item.id,
     index,
+    plugins: (sortablePlugins) =>
+      sortablePlugins.filter(
+        (sortablePlugin) => !Object.is(sortablePlugin, OptimisticSortingPlugin),
+      ),
+    transition: null,
   })
 
   return (
     <li
       ref={ref}
-      className={cn(
-        'bg-background flex min-h-24 items-center gap-4 rounded-xl border p-4 transition',
-        isDragging && 'border-primary bg-primary/5 scale-[1.02] opacity-80',
-      )}
+      className="bg-background flex min-h-24 items-center gap-4 rounded-xl border p-4 transition"
     >
       <span className="bg-muted text-muted-foreground flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
         {index + SORTABLE_INDEX_DISPLAY_OFFSET}

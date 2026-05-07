@@ -1,0 +1,82 @@
+diff --git a/hooks.cjs b/hooks.cjs
+index 6c186ae2b64816c8f72fbe792813ba7bf560ce76..7438fdc57bfb68e98dd4e267f937d87682ba01e1 100644
+--- a/hooks.cjs
++++ b/hooks.cjs
+@@ -34,9 +34,9 @@ function useSignal(signal, sync = false) {
+         previous.current = currentValue2;
+         if (!read.current) return;
+         if (sync) {
+-          reactDom.flushSync(forceUpdate);
++          queueMicrotask(() => reactDom.flushSync(forceUpdate));
+         } else {
+-          forceUpdate();
++          queueMicrotask(forceUpdate);
+         }
+       }
+     }),
+@@ -85,7 +85,7 @@ function useDeepSignal(target, synchronous) {
+         if (sync) {
+           queueMicrotask(() => reactDom.flushSync(forceUpdate));
+         } else {
+-          forceUpdate();
++          queueMicrotask(forceUpdate);
+         }
+       }
+     });
+diff --git a/hooks.js b/hooks.js
+index 8192d3d1f418f6efe2f891dcbaca882830aea33a..88c098a245fe005daa1be3ed526b882dc9b71ac4 100644
+--- a/hooks.js
++++ b/hooks.js
+@@ -32,9 +32,9 @@ function useSignal(signal, sync = false) {
+         previous.current = currentValue2;
+         if (!read.current) return;
+         if (sync) {
+-          flushSync(forceUpdate);
++          queueMicrotask(() => flushSync(forceUpdate));
+         } else {
+-          forceUpdate();
++          queueMicrotask(forceUpdate);
+         }
+       }
+     }),
+@@ -83,7 +83,7 @@ function useDeepSignal(target, synchronous) {
+         if (sync) {
+           queueMicrotask(() => flushSync(forceUpdate));
+         } else {
+-          forceUpdate();
++          queueMicrotask(forceUpdate);
+         }
+       }
+     });
+diff --git a/index.cjs b/index.cjs
+index 38342cd183c83099a4d3973cd681d06d6035caa6..9e8e29f6cd7a7b0adacde16d1a520310727bca8f 100644
+--- a/index.cjs
++++ b/index.cjs
+@@ -192,7 +192,7 @@ function useStableInstance(create) {
+   if (!ref.current) {
+     ref.current = create();
+   }
+-  react.useInsertionEffect(() => {
++  hooks.useIsomorphicLayoutEffect(() => {
+     return () => {
+       var _a2;
+       return (_a2 = ref.current) == null ? void 0 : _a2.destroy();
+diff --git a/index.js b/index.js
+index fa1a6fd526b90348d816a1a71820e42aff42df12..90e308e789596b64e916c07ba0973111b466be9e 100644
+--- a/index.js
++++ b/index.js
+@@ -1,4 +1,4 @@
+-import { createContext, memo, forwardRef, useState, useRef, useMemo, startTransition, useImperativeHandle, useEffect, useInsertionEffect, useContext, useCallback, createElement } from 'react';
++import { createContext, memo, forwardRef, useState, useRef, useMemo, startTransition, useImperativeHandle, useEffect, useContext, useCallback, createElement } from 'react';
+ import { DragDropManager, resolveCustomizable, defaultPreset, Draggable, Feedback, Droppable } from '@dnd-kit/dom';
+ export { KeyboardSensor, PointerSensor } from '@dnd-kit/dom';
+ import { useIsomorphicLayoutEffect, useLatest, useOnValueChange, useDeepSignal, useOnElementChange, useComputed } from '@dnd-kit/react/hooks';
+@@ -191,7 +191,7 @@ function useStableInstance(create) {
+   if (!ref.current) {
+     ref.current = create();
+   }
+-  useInsertionEffect(() => {
++  useIsomorphicLayoutEffect(() => {
+     return () => {
+       var _a2;
+       return (_a2 = ref.current) == null ? void 0 : _a2.destroy();
