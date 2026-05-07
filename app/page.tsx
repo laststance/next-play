@@ -41,6 +41,9 @@ export default async function Home() {
         <Button asChild variant="outline">
           <Link href="/dndkit/persisted">dndkit Persisted</Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href="/dndkit/drag-overlay">dndkit DragOverlay</Link>
+        </Button>
       </Grid>
     </Main>
   )
