@@ -27,6 +27,7 @@ const NAV_LINKS: ReadonlyArray<NavLink> = [
   { href: '/react-flow', label: 'react-flow' },
   { href: '/react-flow-2', label: 'react-flow-2' },
   { href: '/activity', label: 'activity' },
+  { href: '/react-query', label: 'react-query' },
   { href: '/dndkit/basic', label: 'dndkit Basic' },
   { href: '/dndkit/sortable', label: 'dndkit Sortable' },
   { href: '/dndkit/kanban', label: 'dndkit Kanban' },

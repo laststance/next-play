@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { QueryProvider } from '@/components/query-client-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
@@ -39,12 +40,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster />
-          </TooltipProvider>
+          <QueryProvider>
+            <TooltipProvider>
+              <Header />
+              {children}
+              <Footer />
+              <Toaster />
+            </TooltipProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
