@@ -4,46 +4,45 @@ import { Grid } from '@/components/grid'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
+/**
+ * Navigation entries displayed as a responsive button grid on the home page.
+ *
+ * The grid uses `repeat(auto-fit, minmax(140px, 1fr))`, which lets the column
+ * count adapt to the available width: cells stay at least 140px wide so that
+ * long labels like "dndkit DragOverlay" fit comfortably, and they expand to
+ * share remaining space evenly when there is room. As a result the layout
+ * gracefully reflows on narrow viewports without truncation tricks.
+ *
+ * @example
+ *   { href: '/dndkit/drag-overlay', label: 'dndkit DragOverlay' }
+ *   // → renders as a single full-width button label inside its grid cell.
+ */
+type NavLink = Readonly<{ href: string; label: string }>
+
+const NAV_LINKS: ReadonlyArray<NavLink> = [
+  { href: '/guestbook', label: 'guestbook' },
+  { href: '/tab', label: 'tab' },
+  { href: '/field-array', label: 'field-array' },
+  { href: '/action-prop', label: 'action-prop' },
+  { href: '/react-flow', label: 'react-flow' },
+  { href: '/react-flow-2', label: 'react-flow-2' },
+  { href: '/activity', label: 'activity' },
+  { href: '/dndkit/basic', label: 'dndkit Basic' },
+  { href: '/dndkit/sortable', label: 'dndkit Sortable' },
+  { href: '/dndkit/kanban', label: 'dndkit Kanban' },
+  { href: '/dndkit/persisted', label: 'dndkit Persisted' },
+  { href: '/dndkit/drag-overlay', label: 'dndkit DragOverlay' },
+]
+
 export default async function Home() {
   return (
     <Main>
-      <Grid className="flex-1 grid-cols-6 content-start gap-2">
-        <Button asChild variant="outline">
-          <Link href="/guestbook">guestbook</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/tab">tab</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/field-array">field-array</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/action-prop">action-prop</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/react-flow">react-flow</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/react-flow-2">react-flow-2</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/activity">activity</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/dndkit/basic">dndkit Basic</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/dndkit/sortable">dndkit Sortable</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/dndkit/kanban">dndkit Kanban</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/dndkit/persisted">dndkit Persisted</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/dndkit/drag-overlay">dndkit DragOverlay</Link>
-        </Button>
+      <Grid className="w-full flex-1 grid-cols-[repeat(auto-fit,minmax(140px,1fr))] content-start gap-2">
+        {NAV_LINKS.map(({ href, label }) => (
+          <Button key={href} asChild variant="outline" className="w-full">
+            <Link href={href}>{label}</Link>
+          </Button>
+        ))}
       </Grid>
     </Main>
   )
