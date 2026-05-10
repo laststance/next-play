@@ -1,7 +1,7 @@
 import path from 'path'
 
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [react()],
@@ -10,10 +10,15 @@ export default defineConfig({
     environment: 'happy-dom',
     globalSetup: ['./vitest.global-setup.ts'],
     setupFiles: ['./vitest.setup.ts'],
+    exclude: [...configDefaults.exclude, '**/playground/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: ['node_modules/', 'dist/', '.next/'],
+      exclude: [
+        ...(configDefaults.coverage.exclude ?? []),
+        '.next/',
+        '**/playground/**',
+      ],
     },
   },
   resolve: {

@@ -15,6 +15,7 @@ export default defineConfig([
     'next-env.d.ts',
     'node_modules/**',
     'lib/generated/**',
+    '**/playground/**',
     'eslint.config.mjs',
     'postcss.config.mjs',
   ]),

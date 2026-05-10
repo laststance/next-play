@@ -46,3 +46,7 @@ logs
 /lib/generated/prisma
 prisma/dev.db
 prisma/dev.db-journal
+
+# Package playgrounds: experimental files stay local; only `.gitkeep` is tracked.
+**/playground/**
+!**/playground/.gitkeep
