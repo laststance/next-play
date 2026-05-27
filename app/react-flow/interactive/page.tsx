@@ -23,6 +23,13 @@ import { useCallback, useState } from 'react'
 import '@xyflow/react/dist/style.css'
 
 import { REACT_FLOW_CANVAS_HEIGHT_CLASS } from '@/app/react-flow/constants'
+import {
+  logConnect,
+  logEdgesChange,
+  logFlowAction,
+  logNodesChange,
+  logValidConnection,
+} from '@/app/react-flow/log-flow-event'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
@@ -48,6 +55,8 @@ const REACT_FLOW_RANDOM_POSITION_MAX_PX = 400
 
 let nodeIdCounter = 4
 
+const LESSON_LABEL = 'Interactive'
+
 /**
  * Lesson 3 canvas: must live inside ReactFlowProvider to use useReactFlow().
  * @returns The interactive React Flow canvas with toolbar controls.
@@ -60,44 +69,89 @@ function FlowCanvas() {
   const isValidConnection = useCallback(
     (edgeOrConnection: Connection | Edge) => {
       const { source, target } = edgeOrConnection
-      if (!source || !target || source === target) return false
+      if (!source || !target || source === target) {
+        logValidConnection(
+          LESSON_LABEL,
+          edgeOrConnection,
+          false,
+          'source and target must exist and be different nodes',
+        )
+        return false
+      }
 
       const isDuplicate = edges.some(
         (edge) =>
           (edge.source === source && edge.target === target) ||
           (edge.source === target && edge.target === source),
       )
-      return !isDuplicate
+
+      if (isDuplicate) {
+        logValidConnection(
+          LESSON_LABEL,
+          edgeOrConnection,
+          false,
+          'duplicate edge between the same two nodes',
+        )
+        return false
+      }
+
+      logValidConnection(
+        LESSON_LABEL,
+        edgeOrConnection,
+        true,
+        'no duplicate edge found',
+      )
+      return true
     },
     [edges],
   )
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) =>
-      setNodes((currentNodes) => applyNodeChanges(changes, currentNodes)),
+      setNodes((currentNodes) => {
+        const nextNodes = applyNodeChanges(changes, currentNodes)
+        logNodesChange(LESSON_LABEL, changes, currentNodes, nextNodes)
+        return nextNodes
+      }),
     [],
   )
 
   const onEdgesChange = useCallback(
     (changes: EdgeChange[]) =>
-      setEdges((currentEdges) => applyEdgeChanges(changes, currentEdges)),
+      setEdges((currentEdges) => {
+        const nextEdges = applyEdgeChanges(changes, currentEdges)
+        logEdgesChange(LESSON_LABEL, changes, currentEdges, nextEdges)
+        return nextEdges
+      }),
     [],
   )
 
   const onConnect = useCallback(
     (params: Connection) =>
-      setEdges((currentEdges) => addEdge(params, currentEdges)),
+      setEdges((currentEdges) => {
+        const nextEdges = addEdge(params, currentEdges)
+        logConnect(LESSON_LABEL, params, currentEdges, nextEdges)
+        return nextEdges
+      }),
     [],
   )
 
   const addNewNode = useCallback(() => {
     const id = `node-${nodeIdCounter++}`
+    const position = {
+      x: Math.random() * REACT_FLOW_RANDOM_POSITION_MAX_PX,
+      y: Math.random() * REACT_FLOW_RANDOM_POSITION_MAX_PX,
+    }
+
+    logFlowAction(LESSON_LABEL, 'addNewNode', {
+      handler: 'reactFlow.addNodes({ id, position, data })',
+      id,
+      position,
+    })
+
     reactFlow.addNodes({
       id,
-      position: {
-        x: Math.random() * REACT_FLOW_RANDOM_POSITION_MAX_PX,
-        y: Math.random() * REACT_FLOW_RANDOM_POSITION_MAX_PX,
-      },
+      position,
       data: { label: id },
     })
   }, [reactFlow])
@@ -116,30 +170,47 @@ function FlowCanvas() {
         <div className="flex flex-wrap gap-1">
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-            onClick={async () =>
-              reactFlow.zoomIn({ duration: REACT_FLOW_ANIMATION_DURATION_MS })
-            }
+            onClick={async () => {
+              logFlowAction(LESSON_LABEL, 'zoomIn', {
+                handler: 'reactFlow.zoomIn({ duration })',
+                durationMs: REACT_FLOW_ANIMATION_DURATION_MS,
+              })
+              await reactFlow.zoomIn({
+                duration: REACT_FLOW_ANIMATION_DURATION_MS,
+              })
+            }}
             type="button"
           >
             Zoom In
           </button>
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-            onClick={async () =>
-              reactFlow.zoomOut({ duration: REACT_FLOW_ANIMATION_DURATION_MS })
-            }
+            onClick={async () => {
+              logFlowAction(LESSON_LABEL, 'zoomOut', {
+                handler: 'reactFlow.zoomOut({ duration })',
+                durationMs: REACT_FLOW_ANIMATION_DURATION_MS,
+              })
+              await reactFlow.zoomOut({
+                duration: REACT_FLOW_ANIMATION_DURATION_MS,
+              })
+            }}
             type="button"
           >
             Zoom Out
           </button>
           <button
             className="rounded bg-white px-2 py-1 text-xs shadow hover:bg-gray-100 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-            onClick={async () =>
-              reactFlow.fitView({
+            onClick={async () => {
+              logFlowAction(LESSON_LABEL, 'fitView', {
+                handler: 'reactFlow.fitView({ padding, duration })',
+                padding: REACT_FLOW_FIT_VIEW_PADDING,
+                durationMs: REACT_FLOW_ANIMATION_DURATION_MS,
+              })
+              await reactFlow.fitView({
                 padding: REACT_FLOW_FIT_VIEW_PADDING,
                 duration: REACT_FLOW_ANIMATION_DURATION_MS,
               })
-            }
+            }}
             type="button"
           >
             Fit View
@@ -179,7 +250,8 @@ export default function Page() {
             <p className="text-muted-foreground max-w-2xl text-sm">
               Wrap the canvas in `ReactFlowProvider`, then call `useReactFlow()`
               from a child component to zoom, fit the viewport, or add nodes
-              from UI outside the graph.
+              from UI outside the graph. Console logs show both graph handlers
+              and imperative API calls.
             </p>
           </div>
           <Button asChild variant="outline">
@@ -215,6 +287,14 @@ export default function Page() {
                 Try creating the same edge twice — duplicates are blocked.
               </li>
             </ul>
+          </div>
+          <div>
+            <h2 className="font-semibold">Console</h2>
+            <p className="text-muted-foreground mt-2">
+              Try connecting the same two nodes twice —{' '}
+              <code className="text-foreground">isValidConnection → block</code>{' '}
+              explains why the second edge is rejected.
+            </p>
           </div>
           <Button asChild className="w-full" variant="secondary">
             <Link href="/react-flow/basics">Back to Basics</Link>

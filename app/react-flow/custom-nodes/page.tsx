@@ -26,6 +26,11 @@ import {
   REACT_FLOW_CANVAS_HEIGHT_CLASS,
   REACT_FLOW_LESSONS,
 } from '@/app/react-flow/constants'
+import {
+  logConnect,
+  logEdgesChange,
+  logNodesChange,
+} from '@/app/react-flow/log-flow-event'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
 
@@ -96,6 +101,8 @@ function ConditionNode({ data }: NodeProps<ConditionNodeType>) {
 
 const nodeTypes = { conditionNode: ConditionNode }
 
+const LESSON_LABEL = 'Custom Nodes'
+
 /**
  * Lesson 2: custom nodes and multiple handles on one node.
  * @returns A React Flow page with a branching condition node.
@@ -106,19 +113,31 @@ export default function Page() {
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) =>
-      setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
+      setNodes((nodesSnapshot) => {
+        const nextNodes = applyNodeChanges(changes, nodesSnapshot)
+        logNodesChange(LESSON_LABEL, changes, nodesSnapshot, nextNodes)
+        return nextNodes
+      }),
     [],
   )
 
   const onEdgesChange = useCallback(
     (changes: EdgeChange[]) =>
-      setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
+      setEdges((edgesSnapshot) => {
+        const nextEdges = applyEdgeChanges(changes, edgesSnapshot)
+        logEdgesChange(LESSON_LABEL, changes, edgesSnapshot, nextEdges)
+        return nextEdges
+      }),
     [],
   )
 
   const onConnect = useCallback(
     (params: Connection) =>
-      setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
+      setEdges((edgesSnapshot) => {
+        const nextEdges = addEdge(params, edgesSnapshot)
+        logConnect(LESSON_LABEL, params, edgesSnapshot, nextEdges)
+        return nextEdges
+      }),
     [],
   )
 
@@ -133,7 +152,8 @@ export default function Page() {
             <h1 className="text-3xl font-bold tracking-tight">Custom Nodes</h1>
             <p className="text-muted-foreground max-w-2xl text-sm">
               Register custom components with `nodeTypes`, then use `Handle` IDs
-              so each branch edge can leave from a specific source handle.
+              so each branch edge can leave from a specific source handle. Watch
+              `sourceHandle` appear in Console when you connect from Yes/No.
             </p>
           </div>
           <Button asChild variant="outline">
@@ -178,6 +198,14 @@ export default function Page() {
                 Drag the amber condition node and watch handles move with it.
               </li>
             </ul>
+          </div>
+          <div>
+            <h2 className="font-semibold">Console</h2>
+            <p className="text-muted-foreground mt-2">
+              On connect, check{' '}
+              <code className="text-foreground">connection.sourceHandle</code>{' '}
+              in the log — it maps to the Handle `id` on the condition node.
+            </p>
           </div>
           <div>
             <h2 className="font-semibold">Next lesson</h2>

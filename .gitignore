@@ -50,3 +50,4 @@ prisma/dev.db-journal
 # Package playgrounds: experimental files stay local; only `.gitkeep` is tracked.
 **/playground/**
 !**/playground/.gitkeep
+.gstack/
