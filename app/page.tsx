@@ -26,6 +26,7 @@ const NAV_LINKS: ReadonlyArray<NavLink> = [
   { href: '/action-prop', label: 'action-prop' },
   { href: '/react-flow', label: 'React Flow' },
   { href: '/react-flow/basics', label: 'React Flow Basics' },
+  { href: '/react-flow-2', label: 'React Flow getOutgoers' },
   { href: '/activity', label: 'activity' },
   { href: '/react-query', label: 'react-query' },
   { href: '/dndkit/basic', label: 'dndkit Basic' },
