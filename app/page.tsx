@@ -34,6 +34,7 @@ const NAV_LINKS: ReadonlyArray<NavLink> = [
   { href: '/dndkit/kanban', label: 'dndkit Kanban' },
   { href: '/dndkit/persisted', label: 'dndkit Persisted' },
   { href: '/dndkit/drag-overlay', label: 'dndkit DragOverlay' },
+  { href: '/react-hook-form', label: 'react-hook-form' },
 ]
 
 export default async function Home() {
