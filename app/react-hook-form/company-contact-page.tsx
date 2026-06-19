@@ -1,14 +1,14 @@
 'use client'
 
-import { ArrowLeftIcon } from 'lucide-react'
-import Link from 'next/link'
 import { Activity, useState } from 'react'
 
 import {
   COMPANY_TABS,
   DEFAULT_COMPANY_TAB_ID,
+  getCompanyTabById,
 } from '@/app/react-hook-form/constants'
 import { ContactForm } from '@/app/react-hook-form/contact-form'
+import { ContactPageHeader } from '@/app/react-hook-form/contact-page-header'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 /**
@@ -17,6 +17,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
  */
 export function CompanyContactPage() {
   const [activeCompanyId, setActiveCompanyId] = useState(DEFAULT_COMPANY_TAB_ID)
+  const activeCompany = getCompanyTabById(activeCompanyId)
 
   return (
     <>
@@ -32,25 +33,7 @@ export function CompanyContactPage() {
         </Tabs>
       </div>
 
-      <header className="w-full space-y-2">
-        <div className="flex items-start justify-between gap-4">
-          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            react-hook-form
-          </p>
-          <Link
-            className="text-muted-foreground hover:text-foreground inline-flex shrink-0 items-center gap-1 text-xs transition-colors"
-            href="/"
-          >
-            <ArrowLeftIcon className="h-3 w-3" />
-            Home
-          </Link>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight">Contact us</h1>
-        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed">
-          A typical webpage layout — page header, main form column, and sidebar
-          — wired up with react-hook-form validation.
-        </p>
-      </header>
+      <ContactPageHeader companyName={activeCompany.label} />
 
       {COMPANY_TABS.map(({ id }) => (
         <Activity key={id} mode={activeCompanyId === id ? 'visible' : 'hidden'}>

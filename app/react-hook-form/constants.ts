@@ -14,3 +14,10 @@ export const COMPANY_TABS: ReadonlyArray<CompanyTab> = [
 ] as const
 
 export const DEFAULT_COMPANY_TAB_ID = COMPANY_TABS[0].id
+
+/** Returns the tab config for a company id, falling back to the first tab. */
+export function getCompanyTabById(companyId: string): CompanyTab {
+  return (
+    COMPANY_TABS.find((company) => company.id === companyId) ?? COMPANY_TABS[0]
+  )
+}
