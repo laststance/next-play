@@ -78,16 +78,5 @@
     "*.{js,ts,jsx,tsx,cjs,mjs}": [
       "eslint --fix --max-warnings=0 --no-warn-ignored"
     ]
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/engines",
-      "prisma",
-      "sharp",
-      "unrs-resolver"
-    ],
-    "patchedDependencies": {
-      "@dnd-kit/react@0.4.0": "patches/@dnd-kit__react@0.4.0.patch"
-    }
   }
 }
