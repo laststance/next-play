@@ -1,17 +1,15 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
 import { useFieldArray, useForm } from 'react-hook-form'
 
+import {
+  FIELD_ARRAY_FORM_DEFAULT_VALUES,
+  fieldArrayFormSchema,
+  type FieldArrayFormValues,
+} from '@/app/field-array/schema'
 import { Button } from '@/components/ui/button'
-
-type Friend = {
-  name: string
-}
-
-type FormValues = {
-  friends: Friend[]
-}
 
 export const FieldArrayForm = () => {
   const {
@@ -19,10 +17,9 @@ export const FieldArrayForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      friends: [{ name: '' }],
-    },
+  } = useForm<FieldArrayFormValues>({
+    resolver: zodResolver(fieldArrayFormSchema),
+    defaultValues: FIELD_ARRAY_FORM_DEFAULT_VALUES,
   })
 
   const { fields, append, remove } = useFieldArray({
@@ -30,7 +27,7 @@ export const FieldArrayForm = () => {
     name: 'friends',
   })
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: FieldArrayFormValues) => {
     alert(JSON.stringify(data, null, 2))
   }
 
@@ -52,9 +49,7 @@ export const FieldArrayForm = () => {
           <div key={field.id} className="flex items-start gap-2">
             <div className="flex flex-1 flex-col gap-1">
               <input
-                {...register(`friends.${index}.name`, {
-                  required: '名前は必須です',
-                })}
+                {...register(`friends.${index}.name`)}
                 placeholder={`友達 ${index + 1}`}
                 className="border-border w-full rounded-md border px-3 py-2"
               />
