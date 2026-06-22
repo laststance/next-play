@@ -41,6 +41,17 @@ export const FieldArrayForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-[80%] flex-col gap-4 px-8 pb-8"
       >
+        <div className="flex flex-col gap-1">
+          <label htmlFor="food">食べ物</label>
+          <input
+            {...register('food')}
+            placeholder="食べ物"
+            className="border-border w-full rounded-md border px-3 py-2"
+          />
+          {errors.food && (
+            <p className="text-destructive text-sm">{errors.food.message}</p>
+          )}
+        </div>
         <p className="text-muted-foreground text-sm">
           友達の名前を追加・削除できます。
         </p>
