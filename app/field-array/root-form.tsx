@@ -11,7 +11,7 @@ import {
 } from '@/app/field-array/schema'
 import { Button } from '@/components/ui/button'
 
-export const FieldArrayForm = () => {
+export const RootForm = () => {
   const methods = useForm<FieldArrayFormValues>({
     resolver: zodResolver(fieldArrayFormSchema),
     defaultValues: FIELD_ARRAY_FORM_DEFAULT_VALUES,

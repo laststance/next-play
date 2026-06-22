@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 
-import { FieldArrayForm } from '@/app/field-array/field-array-form'
+import { RootForm } from '@/app/field-array/root-form'
 import { Main } from '@/components/main'
 
 export default function Page() {
@@ -12,7 +12,7 @@ export default function Page() {
           <ArrowLeftIcon className="h-4 w-4" /> Home
         </Link>
       </div>
-      <FieldArrayForm />
+      <RootForm />
     </Main>
   )
 }
