@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 
-import { FieldArrayForm } from '@/components/field-array-form'
+import { FieldArrayForm } from '@/app/field-array/field-array-form'
 import { Main } from '@/components/main'
 
 export default function Page() {
