@@ -97,8 +97,8 @@ importers:
         specifier: ^4.1.9
         version: 4.1.9(vitest@4.1.9)
       code-inspector-plugin:
-        specifier: ^1.6.1
-        version: 1.6.1
+        specifier: ^1.6.6
+        version: 1.6.6
       eslint:
         specifier: ^10.5.0
         version: 10.5.0(jiti@2.7.0)
@@ -289,23 +289,23 @@ packages:
     resolution: {integrity: sha512-4zBIxpPzowiZpusoFkyGVwakdRJUyuH5PxQ/PrqghfdFWWasvnCdPfQXHrenDai+gyLARulZjZowCOj6fjT4pA==}
     engines: {node: '>=6.9.0'}
 
-  '@code-inspector/core@1.6.1':
-    resolution: {integrity: sha512-jlRjItyW7AlcEAi3oqxq11NsGdtfvG2ZOCs8mJQAlRhIKGEIWSECgN5oNzuOICOF+eRVHxUfBL4gd0FiFfaDuQ==}
+  '@code-inspector/core@1.6.6':
+    resolution: {integrity: sha512-r7EzrS5391Nhd3zvuJF9EprmBTxL6jZzBztY5WRJs7V17I6vmt2YmJVq4zWIEBWaGF/BAm5bh3Xz0HyxdV6xIA==}
 
-  '@code-inspector/esbuild@1.6.1':
-    resolution: {integrity: sha512-inZSNq+ZsbgZX48u/O9kwVNnr6RiMpBTlOhmfVx/bxCIs+GkGalVuY6AZ5+epg5QiNbL9RdHBkckEZpPAFDHgg==}
+  '@code-inspector/esbuild@1.6.6':
+    resolution: {integrity: sha512-qsLn39PlMKESjG32/xw9BNpSGkApf0uDTWlFbdYtnb9nP2o6NJMP5r0KzTkzGd+FIaTtpC4t0wS1g0ER9m3PTw==}
 
-  '@code-inspector/mako@1.6.1':
-    resolution: {integrity: sha512-mk8qfMOhEaGwvxruIudv2edZ5xaREaoMDmaiou4qEkfxfpiQ+8oKKGCQhNw8ML2wgVLUEeizCQO60IWpBJnWxg==}
+  '@code-inspector/mako@1.6.6':
+    resolution: {integrity: sha512-F77O+myCJr0leOsHAbNecZ1yTTir97bmX9pJhUrSRAsOMmlGshSSYnn9SIybfMJ00aAJtY/VkecMRxrFFedbVA==}
 
-  '@code-inspector/turbopack@1.6.1':
-    resolution: {integrity: sha512-4jY89hyU4p7DtTqEyr4qYnnaQSGvtZvrWr8PEaYYR0EDK+qHDl6ndupZBYU2zzKMv87gnWqZ271rPA+0YXfEBg==}
+  '@code-inspector/turbopack@1.6.6':
+    resolution: {integrity: sha512-I6PwChRNoZWj9VooVmkgl8bGB0PflDfMPn5q4QCLezaOejZwORKujyO5lVd+JK1HEmWX7WXUwy2DJzQsjNr+xg==}
 
-  '@code-inspector/vite@1.6.1':
-    resolution: {integrity: sha512-ZlfS23t9naunoA8xBAlaEgEAFWq6YV1frKgE42fXZUNYOmcZlpaV/8EdqBJt/JZu6MJkceEVmgGRSJc5kYXIag==}
+  '@code-inspector/vite@1.6.6':
+    resolution: {integrity: sha512-5Y1lUTkdATQmAe59rLMiczVUwIgGTTU+3DnCJOIp2aD4HyAg8mcEDtm3vqH8y2eu9tOGht8bz+06B0sFq3pZ3g==}
 
-  '@code-inspector/webpack@1.6.1':
-    resolution: {integrity: sha512-pgrqzBja1FBk0WWXodmbfOnpLX4rbofBPk4INHc9UWnDlv1Ypfhn9pX7N5zJ0pBRHjrBF6ow4xfm0GGb7eUG2w==}
+  '@code-inspector/webpack@1.6.6':
+    resolution: {integrity: sha512-CnbPJhYf37c37woPwVDFN2KfG3mkzQe138KbRBib9nvabdzoMaT+7NuT6HbCnx+2Pr4WbqM0V+nf+pQhsoi/wA==}
 
   '@dnd-kit/abstract@0.5.0':
     resolution: {integrity: sha512-hi13iMJgjPX/KDYVKg5VeDIhmYiV6buc9bAX+tCLYf4QdyYjPbsXjn2sPo6m7fQ6SGJBEFgHJ2PemeKDUbwBaA==}
@@ -2391,8 +2391,8 @@ packages:
   code-block-writer@13.0.3:
     resolution: {integrity: sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==}
 
-  code-inspector-plugin@1.6.1:
-    resolution: {integrity: sha512-XsGzQ2Kkrn2xdZtwviORKOVY4H8ixe95VSxkjUfzdWGhl9z3UVA2tci8o/1juJm+vaIxcVjlyefJOoTKjqhQcw==}
+  code-inspector-plugin@1.6.6:
+    resolution: {integrity: sha512-NQ8CWmMbFiZ+ck34Zxw4/awjIYcyutNPiVCdPe2hVXMD/NG2D+aWAz8NI2krOIagGnbny8j/YCyoiDsNRbnAbQ==}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -3439,8 +3439,8 @@ packages:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
 
-  launch-ide@1.4.3:
-    resolution: {integrity: sha512-v2xMAarJOFy51kuesYEIIx5r4WHvsV+VLMU49K24bdiRZGUpo1ZulO1DRrLozM5BMbXUfRfrUTM2PbBfYCeA4Q==}
+  launch-ide@1.4.5:
+    resolution: {integrity: sha512-W7e4UPmJRwW/YgMn9n3dG5RyzHWGOf31Zb0SmG4pYyH5PiL2KlNZHRo9eUOvozYVY2oqglTfidNKWUiOK6PAJA==}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -4959,45 +4959,45 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@code-inspector/core@1.6.1':
+  '@code-inspector/core@1.6.6':
     dependencies:
       '@vue/compiler-dom': 3.5.38
       chalk: 4.1.1
       dotenv: 16.6.1
-      launch-ide: 1.4.3
+      launch-ide: 1.4.5
       portfinder: 1.0.38
     transitivePeerDependencies:
       - supports-color
 
-  '@code-inspector/esbuild@1.6.1':
+  '@code-inspector/esbuild@1.6.6':
     dependencies:
-      '@code-inspector/core': 1.6.1
+      '@code-inspector/core': 1.6.6
     transitivePeerDependencies:
       - supports-color
 
-  '@code-inspector/mako@1.6.1':
+  '@code-inspector/mako@1.6.6':
     dependencies:
-      '@code-inspector/core': 1.6.1
+      '@code-inspector/core': 1.6.6
     transitivePeerDependencies:
       - supports-color
 
-  '@code-inspector/turbopack@1.6.1':
+  '@code-inspector/turbopack@1.6.6':
     dependencies:
-      '@code-inspector/core': 1.6.1
-      '@code-inspector/webpack': 1.6.1
+      '@code-inspector/core': 1.6.6
+      '@code-inspector/webpack': 1.6.6
     transitivePeerDependencies:
       - supports-color
 
-  '@code-inspector/vite@1.6.1':
+  '@code-inspector/vite@1.6.6':
     dependencies:
-      '@code-inspector/core': 1.6.1
+      '@code-inspector/core': 1.6.6
       chalk: 4.1.1
     transitivePeerDependencies:
       - supports-color
 
-  '@code-inspector/webpack@1.6.1':
+  '@code-inspector/webpack@1.6.6':
     dependencies:
-      '@code-inspector/core': 1.6.1
+      '@code-inspector/core': 1.6.6
     transitivePeerDependencies:
       - supports-color
 
@@ -7050,14 +7050,14 @@ snapshots:
 
   code-block-writer@13.0.3: {}
 
-  code-inspector-plugin@1.6.1:
+  code-inspector-plugin@1.6.6:
     dependencies:
-      '@code-inspector/core': 1.6.1
-      '@code-inspector/esbuild': 1.6.1
-      '@code-inspector/mako': 1.6.1
-      '@code-inspector/turbopack': 1.6.1
-      '@code-inspector/vite': 1.6.1
-      '@code-inspector/webpack': 1.6.1
+      '@code-inspector/core': 1.6.6
+      '@code-inspector/esbuild': 1.6.6
+      '@code-inspector/mako': 1.6.6
+      '@code-inspector/turbopack': 1.6.6
+      '@code-inspector/vite': 1.6.6
+      '@code-inspector/webpack': 1.6.6
       chalk: 4.1.1
     transitivePeerDependencies:
       - supports-color
@@ -8149,7 +8149,7 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
-  launch-ide@1.4.3:
+  launch-ide@1.4.5:
     dependencies:
       chalk: 4.1.1
       dotenv: 16.6.1
